@@ -6,7 +6,7 @@
 
 更新源：https://github.com/haseltongunder-sudo/tangxin-mg-skill
 """
-import io, json, os, shutil, sys, urllib.request, zipfile
+import io, json, os, shutil, sys, time, urllib.request, zipfile
 
 REPO = 'haseltongunder-sudo/tangxin-mg-skill'
 RAW = f'https://raw.githubusercontent.com/{REPO}/main/'
@@ -23,9 +23,21 @@ def ver(s):
 
 
 def get(url, timeout=10):
-    req = urllib.request.Request(url, headers={'User-Agent': 'tangxin-mg-skill-updater'})
+    if url.startswith(RAW):  # 绕过 CDN 缓存，保证拿到最新版本号
+        url += '?t=%d' % time.time()
+    req = urllib.request.Request(url, headers={'User-Agent': 'tangxin-mg-skill-updater', 'Cache-Control': 'no-cache'})
     with urllib.request.urlopen(req, timeout=timeout) as r:
         return r.read()
+
+
+def get_file(name):
+    """先走 raw.githubusercontent.com，失败再走 GitHub API。"""
+    try:
+        return get(RAW + name)
+    except Exception:
+        import base64
+        j = json.loads(get(f'https://api.github.com/repos/{REPO}/contents/{name}?ref=main'))
+        return base64.b64decode(j['content'])
 
 
 def local_version():
@@ -38,13 +50,13 @@ def local_version():
 def check():
     loc = local_version()
     try:
-        latest = get(RAW + 'VERSION').decode().strip()
+        latest = get_file('VERSION').decode().strip()
     except Exception as e:  # 没网 / 被墙：不影响正常使用
         return {'local': loc, 'latest': None, 'update': False, 'error': str(e)}
     notes = ''
     if ver(latest) > ver(loc):
         try:
-            log = get(RAW + 'CHANGELOG.md').decode('utf-8')
+            log = get_file('CHANGELOG.md').decode('utf-8')
             # 只取比本地新的段落
             parts, keep = [], False
             for line in log.splitlines():
