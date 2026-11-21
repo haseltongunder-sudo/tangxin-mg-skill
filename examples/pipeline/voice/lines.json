@@ -1,0 +1,68 @@
+{
+ "p1": {
+  "file": "p1.mp3",
+  "speaker": "teacher",
+  "text": "同学们，着火时烟往上飘，一定要弯腰低姿。",
+  "voice": "zh-CN-XiaoxiaoNeural",
+  "key": "ea6ab9ae262a",
+  "dur": 4.584,
+  "talk": [
+   [
+    0.19,
+    0.79
+   ],
+   [
+    1.09,
+    2.51
+   ],
+   [
+    2.73,
+    4.01
+   ]
+  ]
+ },
+ "p2": {
+  "file": "p2.mp3",
+  "speaker": "teacher",
+  "text": "用湿毛巾捂住口鼻，沿着安全出口走。",
+  "voice": "zh-CN-XiaoxiaoNeural",
+  "key": "f3783a599599",
+  "dur": 3.96,
+  "talk": [
+   [
+    0.17,
+    1.89
+   ],
+   [
+    2.07,
+    3.37
+   ]
+  ]
+ },
+ "p3": {
+  "file": "p3.mp3",
+  "speaker": "teacher",
+  "text": "记住：弯腰、捂鼻、走楼梯！",
+  "voice": "zh-CN-XiaoxiaoNeural",
+  "key": "08cdf1579b63",
+  "dur": 3.48,
+  "talk": [
+   [
+    0.17,
+    0.63
+   ],
+   [
+    0.91,
+    1.39
+   ],
+   [
+    1.61,
+    2.11
+   ],
+   [
+    2.31,
+    2.93
+   ]
+  ]
+ }
+}

@@ -1,0 +1,3 @@
+{"shots":["part1.mp4","part2.mp4","part3.mp4","part4.mp4"],"out":"镜头库样片.mp4","title":"镜头库样片",
+ "chapters":[{"shot":1,"title":"推拉摇移"},{"shot":2,"title":"升降打点"},{"shot":3,"title":"冲击视差"},{"shot":4,"title":"焦点旋转"}],
+ "topbar":true,"topbar_style":{"x0":700,"x1":1700},"bgm":"auto","bgm_vol":0.5}

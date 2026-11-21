@@ -1,0 +1,44 @@
+{
+ "fps": 30,
+ "out": "out/quiz_kit.mp4",
+ "dissolve": 0,
+ "shots": [
+  {
+   "scene": "s114",
+   "static": true,
+   "dur": 10,
+   "camera": {
+    "preset": "lock"
+   },
+   "in": {
+    "type": "iris",
+    "dur": 0.6
+   },
+   "quiz": {
+    "style": "kit",
+    "no": 1,
+    "q": "烟雾里应该怎么走？",
+    "options": [
+     "弯腰低姿捂口鼻",
+     "直着身子快跑",
+     "站着等烟散"
+    ],
+    "answer": [
+     0
+    ],
+    "t": 0.2,
+    "cd_at": 2.0,
+    "countdown": 5,
+    "cross": false
+   },
+   "subs": [
+    {
+     "t": 7.3,
+     "d": 2.5,
+     "text": "烟往上飘，要弯腰低姿、捂住口鼻"
+    }
+   ]
+  }
+ ],
+ "accent": "#E8483B"
+}

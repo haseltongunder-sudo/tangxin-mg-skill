@@ -1,0 +1,40 @@
+<h2>一、这是什么</h2>
+<p>一套给中小学微课、MG 动画、互动网页用的<b>分层矢量场景</b>。每个场景 1920×1080，全部由程序绘制（不是 AI 位图），放大不糊、可改色、可逐层动起来。场景里<b>不放人物</b>，角色（真人抠像、GIF、矢量人、3D）按你的风格另外叠加。</p>
+<table><tr><th>文件</th><th>用途</th></tr>
+<tr><td><code>MG场景图库.html</code></td><td>浏览、搜索、预览入场动画、换配色、看安全区、下载 SVG</td></tr>
+<tr><td><code>svg/s001.svg …</code></td><td>场景源文件，可直接放进网页、PPT、剪映、AE、Illustrator</td></tr>
+<tr><td><code>png/s001.png …</code></td><td>1920×1080 静帧，直接当背景用</td></tr>
+<tr><td><code>scenes.json</code></td><td>场景目录：编号、名称、分类、适用学科、图层、角色站位、配色变量</td></tr>
+<tr><td><code>mgscene.js</code></td><td>网页运行时：入场、循环、换配色、定格</td></tr>
+<tr><td><code>export_mp4.py</code></td><td>把任意场景的入场动画导出成 MP4（视频剪辑用）</td></tr>
+<tr><td><code>src/</code></td><td>场景生成代码（core.py 工具库 + scenes_*.py），用来改场景或新增场景</td></tr></table>
+
+<h2>二、最快用法</h2>
+<p><b>做 PPT / 剪映：</b>直接用 <code>png/</code> 里的图当背景；要动效就用 <code>export_mp4.py</code> 导出 4 秒入场视频，放在开头，后面接静帧。</p>
+<p><b>做互动网页：</b></p>
+<pre>&lt;div id="bg"&gt;&lt;!-- 把 svg/s001.svg 的内容粘贴到这里 --&gt;&lt;/div&gt;
+&lt;script src="mgscene.js"&gt;&lt;/script&gt;
+&lt;script&gt;
+  const svg = document.querySelector('#bg svg');
+  MGScene.play(svg);            // 逐层入场 + 循环动效
+  MGScene.theme(svg, 'dusk');   // 换配色：original cool warm dusk night soft
+&lt;/script&gt;</pre>
+<p><b>做视频（逐帧渲染）：</b></p>
+<pre>python3 export_mp4.py s001 4 out.mp4          # 场景编号 时长(秒) 输出
+python3 export_mp4.py s032 6 clock.mp4 --theme night</pre>
+
+<h2>三、每个场景里有什么</h2>
+<p><b>图层：</b>每个场景拆成 8–14 层（天空、远景、建筑、地面、道具、光效……），每层带入场方式（升起、落下、弹出、长出、左右滑入、淡入、推近）和出场时间，部分层带循环（云漂移、树摇摆、灯呼吸、钟摆摆动、萤火闪烁）。在 SVG 里是 <code>&lt;g class="layer" data-enter="rise" data-delay="0.45" data-loop="sway"&gt;</code>，可以直接改数字调节奏。</p>
+<p><b>配色变量：</b>所有颜色写在 SVG 根节点的 CSS 变量里（如 <code>--wall1</code>、<code>--board</code>）。改一个变量，整场同色元素一起变；也可以用 6 套预设一键换。</p>
+<p><b>安全区：</b>scenes.json 的 <code>stand</code> 给出角色脚踩的地面线和可站范围，<code>subtitle</code> 给出字幕区（底部居中）。在图库里点「安全区」能看到。</p>
+
+<h2>四、制作建议</h2>
+<p>1. 一集换 3–5 个场景，相邻镜头不要用同一分类，观感更新鲜。<br>
+2. 角色脚底对齐 <code>ground_y</code>，人物高度约为画面高度的 45%–55%。<br>
+3. 讲知识点时用「黄昏」「柔和」配色压低背景，前景卡片更突出；夜晚配色适合睡眠、星空类主题。<br>
+4. 场景里尽量不写字（只有极少数装饰字），标题、标签、字幕由你的课件模板加。<br>
+5. 需要新场景时，在 <code>src/scenes_*.py</code> 里复制一个函数改，运行 <code>python3 render.py</code> 自动生成 SVG、PNG 和目录，再运行 <code>python3 build_gallery.py</code> 更新图库。</p>
+
+<h2>五、环境</h2>
+<p>浏览器打开即可使用图库和网页运行时。导出视频和重新生成需要 Python 3、playwright（Chromium）和 ffmpeg：<code>pip install playwright &amp;&amp; playwright install chromium</code>。</p>
+<p>版权：场景由本项目程序原创绘制，可用于教学与课件制作。</p>

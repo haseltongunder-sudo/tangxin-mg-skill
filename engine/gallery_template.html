@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MG 教学场景库</title>
+<style>
+@font-face{font-family:"Noto Sans SC";src:url(data:font/woff2;base64,/*FONT*/) format("woff2");font-weight:100 900}
+:root{--bg:#F7F2EA;--ink:#2B2A33;--sub:#7A7480;--card:#fff;--acc:#E8664F;--acc2:#2F6656}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:"Noto Sans SC","PingFang SC",sans-serif}
+header{padding:40px 6vw 18px;display:flex;flex-wrap:wrap;align-items:flex-end;gap:18px;justify-content:space-between}
+h1{margin:0;font-size:40px;letter-spacing:2px}h1 small{display:block;font-size:15px;color:var(--sub);letter-spacing:1px;margin-top:8px;font-weight:500}
+.tabs button,.chips button,.ctl button{font:inherit;border:0;cursor:pointer}
+.tabs{display:flex;gap:8px}.tabs button{padding:10px 20px;border-radius:999px;background:#fff;font-weight:800;font-size:15px;box-shadow:0 2px 8px #0000000d}
+.tabs button.on{background:var(--ink);color:#fff}
+.bar{padding:0 6vw 10px;display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.chips{display:flex;flex-wrap:wrap;gap:8px}.chips button{padding:7px 14px;border-radius:999px;background:#fff;font-size:14px;font-weight:700;color:var(--sub)}
+.chips button.on{background:var(--acc);color:#fff}
+.bar input{margin-left:auto;padding:10px 16px;border-radius:999px;border:2px solid #E6DED2;font:inherit;width:240px;background:#fff}
+.grid{padding:14px 6vw 60px;display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:22px}
+.card{background:var(--card);border-radius:18px;overflow:hidden;box-shadow:0 6px 20px #2b1a0a14;cursor:pointer;transition:transform .25s,box-shadow .25s;animation:in .5s both}
+.card:hover{transform:translateY(-6px);box-shadow:0 14px 30px #2b1a0a22}
+.card img{width:100%;aspect-ratio:16/9;display:block;object-fit:cover}
+.card .t{padding:12px 16px 14px;display:flex;justify-content:space-between;align-items:center}.card b{font-size:17px}.card i{font-style:normal;font-size:12px;color:var(--sub);background:#F3EEE6;padding:3px 10px;border-radius:99px}
+.card .id{font-size:12px;color:#B3ABA0;font-weight:700;margin-right:8px}
+@keyframes in{from{opacity:0;transform:translateY(20px)}}
+.count{padding:0 6vw;color:var(--sub);font-size:14px}
+/* viewer */
+#v{position:fixed;inset:0;background:#1c1b22f2;display:none;z-index:9;padding:24px;overflow:auto}
+#v.on{display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:22px}
+#stage{position:relative;align-self:start}#svgbox svg{width:100%;height:auto;border-radius:14px;display:block;background:#000}
+#safe{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;display:none}#safe.on{display:block}
+#side{color:#EEE;font-size:14px;line-height:1.7}#side h2{margin:0 0 4px;font-size:28px;color:#fff}#side .tag{display:inline-block;background:#ffffff1a;padding:2px 10px;border-radius:99px;margin:2px 4px 2px 0;font-size:12px}
+.ctl{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0}.ctl button{padding:8px 14px;border-radius:10px;background:#ffffff1f;color:#fff;font-weight:700;font-size:13px}
+.ctl button.on{background:var(--acc)}.ctl button.main{background:#fff;color:var(--ink)}
+#side table{width:100%;border-collapse:collapse;font-size:12px}#side td{padding:3px 4px;border-bottom:1px solid #ffffff14;color:#CFCAD6}
+#close{position:fixed;right:22px;top:16px;font-size:30px;color:#fff;background:none;border:0;cursor:pointer}
+#guide{display:none;padding:0 6vw 80px;max-width:1100px;line-height:1.85;font-size:16px}#guide.on{display:block}
+#guide h2{margin:34px 0 8px;font-size:24px}#guide code,#guide pre{background:#fff;border-radius:8px;padding:2px 8px;font-size:14px}#guide pre{padding:14px 18px;overflow:auto;box-shadow:0 2px 8px #0000000d}
+#guide table{border-collapse:collapse;background:#fff;border-radius:10px;overflow:hidden}#guide td,#guide th{padding:8px 14px;border-bottom:1px solid #EEE;text-align:left}
+@media(max-width:900px){#v.on{grid-template-columns:1fr}}
+</style></head><body>
+<header><h1>MG 教学场景库<small>中小学各学科与社会日常 · 分层矢量 · 逐层入场 · 一键换配色</small></h1>
+<div class="tabs"><button class="on" data-tab="lib">场景</button><button data-tab="guide">使用说明</button></div></header>
+<div id="libwrap"><div class="bar"><div class="chips" id="chips"></div><input id="q" placeholder="搜索场景、学科、课题…"></div>
+<div class="count" id="count"></div><div class="grid" id="grid"></div></div>
+<div id="guide">/*GUIDE*/</div>
+<div id="v"><button id="close">×</button><div id="stage"><div id="svgbox"></div><svg id="safe" viewBox="0 0 1920 1080"></svg></div>
+<div id="side"><h2 id="vn"></h2><div id="vc"></div><p id="vd"></p>
+<div class="ctl"><button class="main" id="replay">▶ 重播入场</button><button id="safebtn">安全区</button><button id="dl">下载 SVG</button></div>
+<div style="margin-top:4px">配色</div><div class="ctl" id="themes"></div>
+<div style="margin:10px 0 4px">图层（按入场顺序）</div><table id="lt"></table></div></div>
+<script>/*JS*/</script>
+<script>
+const META=/*META*/,SVGS=/*SVGS*/,CATS=/*CATS*/,THUMB=/*THUMBS*/;
+const TN={original:'原色',cool:'冷调',warm:'暖调',dusk:'黄昏',night:'夜晚',soft:'柔和'};
+const EN={fade:'淡入',rise:'升起',drop:'落下',pop:'弹出',grow:'长出','slide-l':'左滑入','slide-r':'右滑入',zoom:'推近'};
+const LP={drift:'漂移',sway:'摇摆',bob:'浮动',twinkle:'闪烁',flow:'流动',swing:'摆动',glow:'呼吸光'};
+let cat='全部',cur=null;
+const chips=document.getElementById('chips');
+['全部',...CATS].forEach(c=>{const b=document.createElement('button');b.textContent=c;if(c==='全部')b.className='on';b.onclick=()=>{cat=c;[...chips.children].forEach(x=>x.classList.toggle('on',x===b));draw()};chips.appendChild(b)});
+document.getElementById('q').oninput=draw;
+function draw(){const q=document.getElementById('q').value.trim();const g=document.getElementById('grid');g.innerHTML='';let n=0;
+ Object.values(META).forEach(m=>{if(cat!=='全部'&&m.cat!==cat)return;const s=m.name+m.cat+m.tags.join('')+m.desc;if(q&&!s.includes(q))return;
+  const d=document.createElement('div');d.className='card';d.style.animationDelay=(n*0.03)+'s';
+  d.innerHTML=`<img src="${THUMB[m.id]}" alt="${m.name}"><div class="t"><span><span class="id">${m.id.slice(1)}</span><b>${m.name}</b></span><i>${m.cat}</i></div>`;d.onclick=()=>open_(m.id);g.appendChild(d);n++});
+ document.getElementById('count').textContent=`共 ${n} 个场景`+(n?'':'，暂无结果');}
+function open_(id){cur=id;const m=META[id];document.getElementById('svgbox').innerHTML=SVGS[id];const svg=document.querySelector('#svgbox svg');svg.removeAttribute('width');svg.removeAttribute('height');
+ document.getElementById('vn').textContent=m.name;document.getElementById('vc').innerHTML=[...new Set([m.cat,...m.tags])].map(t=>`<span class="tag">${t}</span>`).join('');document.getElementById('vd').textContent=m.desc;
+ const sm=MGScene.meta(svg);document.getElementById('lt').innerHTML=sm.layers.slice().sort((a,b)=>a.delay-b.delay).map(l=>`<tr><td>${l.name}</td><td>${EN[l.enter]||l.enter}</td><td>${l.delay}s</td><td>${l.loop?LP[l.loop]:''}</td></tr>`).join('');
+ const st=sm.stand,sb=sm.subtitle;document.getElementById('safe').innerHTML=`<rect x="${st.x[0]}" y="${st.ground_y-560}" width="${st.x[1]-st.x[0]}" height="560" fill="#4FD1A533" stroke="#4FD1A5" stroke-width="4" stroke-dasharray="14 10"/><line x1="${st.x[0]}" x2="${st.x[1]}" y1="${st.ground_y}" y2="${st.ground_y}" stroke="#4FD1A5" stroke-width="6"/><text x="${st.x[0]+16}" y="${st.ground_y-520}" fill="#fff" font-size="34" font-weight="800">角色站位</text><rect x="${sb[0]+80}" y="${sb[1]}" width="${sb[2]-sb[0]-160}" height="${sb[3]-sb[1]}" fill="#FFD36E33" stroke="#FFD36E" stroke-width="4" stroke-dasharray="14 10"/><text x="${sb[0]+100}" y="${sb[1]+44}" fill="#fff" font-size="30" font-weight="800">字幕安全区</text>`;
+ const th=document.getElementById('themes');th.innerHTML='';MGScene.THEMES.forEach(t=>{const b=document.createElement('button');b.textContent=TN[t];if(t==='original')b.className='on';b.onclick=()=>{MGScene.theme(svg,t);[...th.children].forEach(x=>x.classList.toggle('on',x===b))};th.appendChild(b)});
+ document.getElementById('v').classList.add('on');MGScene.play(svg);}
+document.getElementById('replay').onclick=()=>MGScene.play(document.querySelector('#svgbox svg'));
+document.getElementById('safebtn').onclick=e=>{document.getElementById('safe').classList.toggle('on');e.target.classList.toggle('on')};
+document.getElementById('close').onclick=()=>{document.getElementById('v').classList.remove('on');document.getElementById('svgbox').innerHTML=''};
+document.getElementById('dl').onclick=()=>{const svg=document.querySelector('#svgbox svg');const b=new Blob([svg.outerHTML],{type:'image/svg+xml'});const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=cur+'_'+META[cur].name+'.svg';a.click()};
+document.querySelectorAll('.tabs button').forEach(b=>b.onclick=()=>{document.querySelectorAll('.tabs button').forEach(x=>x.classList.toggle('on',x===b));const gd=b.dataset.tab==='guide';document.getElementById('guide').classList.toggle('on',gd);document.getElementById('libwrap').style.display=gd?'none':''});
+draw();
+</script></body></html>

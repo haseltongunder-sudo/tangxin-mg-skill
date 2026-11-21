@@ -1,0 +1,6 @@
+# 示例：火灾逃生·弯腰低姿（id|speaker|text），python3 ../../engine/tts.py lines.txt .
+d1|teacher|同学们好，今天我们学习火灾逃生。
+d2|teacher|烟往上飘，所以要弯下腰，贴近地面走。
+d3|teacher|用湿毛巾捂住口鼻，不要直着身子跑。
+d4|teacher|顺着安全出口的指示，走楼梯，不坐电梯。
+d5|teacher|记住：弯腰、捂鼻、走楼梯！

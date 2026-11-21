@@ -1,0 +1,20 @@
+{
+ "title": "火灾逃生·流水线示例",
+ "accent": "#E8483B",
+ "audio_at": 0.25,
+ "shots": [
+  {"line": "p1", "scene": "s001", "teacher": "R", "camera": {"preset": "push_in", "at": [1100, 520]}, "in": "fade", "chapter": "弯腰低姿",
+   "cards": [{"style": "list", "title": "逃生要点", "x": 120, "y": 160, "w": 700, "items": ["1:弯腰低姿", "2:捂住口鼻", "3:走楼梯"]}],
+   "subs": ["同学们，着火时烟往上飘", "一定要弯腰低姿"]},
+  {"line": "p2", "scene": "s065", "teacher": null, "camera": {"preset": "crane_up", "at": [960, 330]}, "in": "whip",
+   "student": {"x": 960, "bend_at": 1.4},
+   "cards": [{"style": "tag", "x": 690, "y": 90, "items": ["ok:湿毛巾捂口鼻"], "size": 40}],
+   "subs": ["用湿毛巾捂住口鼻", "沿着安全出口走"]},
+  {"line": "p3", "scene": "s111", "teacher": "L", "pose": "lean", "camera": {"preset": "parallax_push", "at": [960, 520]}, "in": "iris", "chapter": "口诀",
+   "cards": [{"style": "board", "title": "逃生口诀", "x": 1000, "y": 80, "w": 760, "cross": false, "items": ["弯腰", "捂鼻", "!走楼梯"]}],
+   "subs": ["记住：弯腰、捂鼻、走楼梯！"]},
+  {"quiz": {"style": "kit", "no": 1, "kind": "判断", "q": "着火时可以坐电梯下楼。", "options": ["对", "错"], "answer": [1],
+            "explain": "着火时电梯可能断电、灌烟，要走楼梯。"},
+   "scene": "s114", "camera": {"preset": "lock"}, "in": "star_in", "out": "dip", "chapter": "考考你"}
+ ]
+}

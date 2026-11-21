@@ -1,0 +1,108 @@
+{
+ "d1": {
+  "file": "d1.mp3",
+  "speaker": "teacher",
+  "text": "同学们好，今天我们学习火灾逃生。",
+  "voice": "zh-CN-XiaoxiaoNeural",
+  "key": "89018bd9ff48",
+  "dur": 3.696,
+  "talk": [
+   [
+    0.15,
+    0.97
+   ],
+   [
+    1.29,
+    3.15
+   ]
+  ]
+ },
+ "d2": {
+  "file": "d2.mp3",
+  "speaker": "teacher",
+  "text": "烟往上飘，所以要弯下腰，贴近地面走。",
+  "voice": "zh-CN-XiaoxiaoNeural",
+  "key": "d4d970ba196c",
+  "dur": 4.32,
+  "talk": [
+   [
+    0.17,
+    1.05
+   ],
+   [
+    1.39,
+    2.49
+   ],
+   [
+    2.77,
+    3.75
+   ]
+  ]
+ },
+ "d3": {
+  "file": "d3.mp3",
+  "speaker": "teacher",
+  "text": "用湿毛巾捂住口鼻，不要直着身子跑。",
+  "voice": "zh-CN-XiaoxiaoNeural",
+  "key": "bec39fac2fbe",
+  "dur": 3.84,
+  "talk": [
+   [
+    0.17,
+    1.85
+   ],
+   [
+    2.05,
+    3.25
+   ]
+  ]
+ },
+ "d4": {
+  "file": "d4.mp3",
+  "speaker": "teacher",
+  "text": "顺着安全出口的指示，走楼梯，不坐电梯。",
+  "voice": "zh-CN-XiaoxiaoNeural",
+  "key": "ec3e673e53a2",
+  "dur": 4.44,
+  "talk": [
+   [
+    0.17,
+    1.91
+   ],
+   [
+    2.17,
+    2.85
+   ],
+   [
+    3.05,
+    3.91
+   ]
+  ]
+ },
+ "d5": {
+  "file": "d5.mp3",
+  "speaker": "teacher",
+  "text": "记住：弯腰、捂鼻、走楼梯！",
+  "voice": "zh-CN-XiaoxiaoNeural",
+  "key": "08cdf1579b63",
+  "dur": 3.48,
+  "talk": [
+   [
+    0.17,
+    0.63
+   ],
+   [
+    0.91,
+    1.39
+   ],
+   [
+    1.61,
+    2.11
+   ],
+   [
+    2.33,
+    2.93
+   ]
+  ]
+ }
+}
